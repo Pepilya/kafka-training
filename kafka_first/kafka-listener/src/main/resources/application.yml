@@ -1,0 +1,22 @@
+server:
+  port: 8082
+
+spring:
+  cloud:
+    stream:
+      default:
+        group: listener_1
+      kafka:
+        default:
+          consumer:
+            auto-commit-offset: false
+        binder:
+          brokers: localhost:9092,localhost:9093,localhost:9094
+          required-acks: -1
+          minPartitionCount: 3
+          replicationFactor: 2
+      bindings:
+        orders:
+          destination: orders
+          contentType: application/json
+
